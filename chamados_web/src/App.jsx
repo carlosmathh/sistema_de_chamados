@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./auth/AuthContext";
 
-import LoginPage from "./pages/loginPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import CreateTicketPage from "./pages/CreateTicketPage";
