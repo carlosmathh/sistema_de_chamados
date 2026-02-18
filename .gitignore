@@ -1,0 +1,53 @@
+mysql_206
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ==============================
+# Virtual Environments
+# ==============================
+venv/
+.venv/
+env/
+venv-base/
+
+# ==============================
+# VS Code
+# ==============================
+.vscode/
+
+# ==============================
+# Pytest / Coverage
+# ==============================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==============================
+# Mypy
+# ==============================
+.mypy_cache/
+
+# ==============================
+# OS files
+# ==============================
+.DS_Store
+Thumbs.db
+
+# ==============================
+# Logs
+# ==============================
+*.log
+
+# Credenciais e Variáveis de Ambiente
+.env
+
+
+# arquivos que usei para não esquecer algumas coisas
+/importante.txt
+/MySQL_URL_anotados.txt
+comandoSQL

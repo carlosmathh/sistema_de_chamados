@@ -1,0 +1,110 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema projeto_chamados
+-- -----------------------------------------------------
+USE projeto_chamados;
+
+-- -----------------------------------------------------
+-- Table `projeto_chamados`.`sector`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `projeto_chamados`.`sector` ;
+
+CREATE TABLE IF NOT EXISTS `projeto_chamados`.`sector` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `projeto_chamados`.`position_company`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `projeto_chamados`.`position_company` ;
+
+CREATE TABLE IF NOT EXISTS `projeto_chamados`.`position_company` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `projeto_chamados`.`client`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `projeto_chamados`.`client` ;
+
+CREATE TABLE IF NOT EXISTS `projeto_chamados`.`client` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_sector` INT NOT NULL,
+  `name` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `id_position_company` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_client_sector_idx` (`id_sector` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
+  INDEX `fk_client_position_company_idx` (`id_position_company` ASC) VISIBLE,
+  CONSTRAINT `fk_client_sector`
+    FOREIGN KEY (`id_sector`)
+    REFERENCES `projeto_chamados`.`sector` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_client_position_company`
+    FOREIGN KEY (`id_position_company`)
+    REFERENCES `projeto_chamados`.`position_company` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `projeto_chamados`.`support_team`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `projeto_chamados`.`support_team` ;
+
+CREATE TABLE IF NOT EXISTS `projeto_chamados`.`support_team` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(50) NOT NULL,
+  `position_team` ENUM('estagiario', 'junior', 'senior', 'coordenador') NOT NULL,
+  `active_inactive` BOOLEAN NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `projeto_chamados`.`ticket`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `projeto_chamados`.`ticket` ;
+
+CREATE TABLE IF NOT EXISTS `projeto_chamados`.`ticket` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_client` INT NOT NULL,
+  `id_support` INT NOT NULL,
+  `subject` VARCHAR(50) NOT NULL,
+  `description` TEXT NOT NULL,
+  `status` ENUM('aberto', 'em_andamento', 'resolvido', 'cancelado') NOT NULL COMMENT '“Neste MVP usamos ENUM, mas em um sistema de grande escala isso poderia evoluir para tabelas de domínio.”\n',
+  `priority` ENUM('baixa', 'media', 'alta') NOT NULL,
+  `create_date` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_client_idx` (`id_client` ASC) VISIBLE,
+  INDEX `fk_support_idx` (`id_support` ASC) VISIBLE,
+  CONSTRAINT `fk_client`
+    FOREIGN KEY (`id_client`)
+    REFERENCES `projeto_chamados`.`client` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_support`
+    FOREIGN KEY (`id_support`)
+    REFERENCES `projeto_chamados`.`support_team` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
