@@ -151,7 +151,6 @@ class SupportServices:
             print(e)
             return Tickets_results.ERROR
 
-    # pega o id para comfrimação do erro, se ele não achou o id ou não support valido
     def get_ticket_to_comfirm(self, id_ticket):
         with self.conn.cursor() as cursor:
             cursor.execute(GET_TICKET_COMFIRM_SQL, id_ticket)

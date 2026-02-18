@@ -11,11 +11,5 @@ authflow = AuthFlow()
 
 class App:
 
-    # def client_open_ticket(self):
-    #     client.open_ticket()
-
-    # def alter_ticket_by_support(self):
-    #     menu_support.looping_menu_support()
-
     def init_menu(self):
         authflow.run()

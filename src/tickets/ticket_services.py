@@ -20,7 +20,7 @@ from queries.query_support import (
 )
 from src.audit.ticket_history_service import TicketHistoryService
 
-from queries.queries import Queries  # ajuste o import conforme seu arquivo
+from queries.queries import Queries
 from datetime import datetime
 
 from src.assign_support import AssingSupport
