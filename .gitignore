@@ -46,6 +46,29 @@ Thumbs.db
 # Credenciais e Variáveis de Ambiente
 .env
 
+# ==============================
+# Frontend (Vite/React)
+# ==============================
+node_modules/
+dist/
+build/
+.vercel/
+.vite/
+
+# ==============================
+# Python build / cache extras
+# ==============================
+*.sqlite3
+*.db
+.pyre/
+.ruff_cache/
+
+# ==============================
+# Render / runtime
+# ==============================
+__pypackages__/
+
+
 
 # arquivos que usei para não esquecer algumas coisas
 /importante.txt
