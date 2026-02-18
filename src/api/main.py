@@ -17,8 +17,8 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -31,4 +31,9 @@ app.include_router(ticket_router)
 
 @app.get("/ping")
 def ping():
-    return {"ok": True}
+    return {"ok": True, "version": "cors-1"}
+
+
+@app.get("/cors-test")
+def cors_test():
+    return {"cors": "ok"}
