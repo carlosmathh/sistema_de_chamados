@@ -41,14 +41,7 @@ Minha meta foi construir uma aplicação que exigisse soluções além de um CRU
 *   **Arquitetura em Camadas:** Separação clara de responsabilidades entre **Rotas, Serviços e Queries**, facilitando a manutenção e a legibilidade do código.
 *   **Backend-First:** Toda a inteligência e as regras de negócio residem no servidor, garantindo que o frontend não tenha autoridade sobre o fluxo de dados.
 *   **Full Deployment:** Integração contínua e deploy real utilizando **Render** (API), **Vercel** (Frontend) e **Railway** (Database).
-
-
-
-
-
-
-
-
+* **Foco em Engenharia de Backend:** Como o objetivo central era a construção da API e das regras de negócio, utilizei recursos externos e ferramentas de IA para agilizar a construção da interface. Isso permitiu concentrar 100% do esforço técnico na integridade dos dados e na lógica do servidor, garantindo ao mesmo tempo uma experiência visual funcional para avaliadores.
 
 ---
 
