@@ -29,9 +29,4 @@ app.include_router(ticket_router)
 
 @app.get("/ping")
 def ping():
-    return {"ok": True, "rev": "cors-force-1"}
-
-
-@app.get("/cors-test")
-def cors_test():
-    return {"cors": "ok"}
+    return {"ok": True}
