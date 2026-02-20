@@ -1,5 +1,4 @@
 from typing import Literal
-
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
@@ -7,7 +6,6 @@ from db.connection import get_connection
 from src.api.deps import CurrentUser, get_current_user
 from src.tickets.ticket_services import TicketServices
 from fastapi import Query
-from pydantic import BaseModel
 from typing import Optional
 
 

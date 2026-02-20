@@ -73,7 +73,7 @@ class TicketServices:
             history.log_event(
                 cursor=cursor,
                 id_ticket=ticket_id,
-                event_type="status_change",
+                event_type="status_changed",
                 old_value=old_status,
                 new_value=new_status,
                 actor_type=actor_type,
