@@ -128,7 +128,6 @@ class TicketServices:
         status = "in_progress" if support_id else "open"
 
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        status = "open"
 
         with self.conn.cursor() as cursor:
             cursor.execute(
