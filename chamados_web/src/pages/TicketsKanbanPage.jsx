@@ -7,11 +7,18 @@ import StatusBadge from "../components/StatusBadge";
 import { ui } from "../ui/ui";
 
 const COLUMNS = [
-  { key: "open", title: "Open" },
-  { key: "in_progress", title: "In progress" },
-  { key: "resolved", title: "Resolved" },
-  { key: "canceled", title: "Canceled" },
+  { key: "open", title: "Aberto" },
+  { key: "in_progress", title: "Em andamento" },
+  { key: "resolved", title: "Resolvido" },
+  { key: "canceled", title: "Cancelado" },
 ];
+
+const STATUS_LABEL = {
+  open: "Aberto",
+  in_progress: "Em andamento",
+  resolved: "Resolvido",
+  canceled: "Cancelado",
+};
 
 export default function TicketsKanbanPage() {
   const { user } = useAuth();
@@ -121,7 +128,7 @@ export default function TicketsKanbanPage() {
       );
 
       const detail = err?.response?.data?.detail;
-      setErrorMsg(detail || `Não foi possível mover o ticket #${ticketId} para "${toStatus}".`);
+      setErrorMsg(detail ||`Não foi possível mover o chamado #${ticketId} para "${STATUS_LABEL[toStatus] ?? toStatus}".`);
     } finally {
       setSavingMap((m) => {
         const copy = { ...m };
@@ -141,13 +148,13 @@ export default function TicketsKanbanPage() {
           </div>
           <div style={ui.toolbar}>
             <button style={ui.button("secondary")} onClick={() => navigate("/home")}>
-              Home
+              Início
             </button>
           </div>
         </div>
 
         <div style={ui.alert("error")}>
-          Você não tem permissão para visualizar o Kanban (apenas senior/engineer).
+          Acesso permitido apenas para suportes senior e engineer.
         </div>
       </div>
     );
@@ -159,12 +166,12 @@ export default function TicketsKanbanPage() {
       <div style={ui.headerRow(t)}>
         <div>
           <h1 style={ui.title(t)}>Kanban</h1>
-          <p style={ui.subtitle(t)}>Arraste tickets entre colunas para atualizar o status.</p>
+          <p style={ui.subtitle(t)}>Arraste chamados entre colunas para atualizar o status.</p>
         </div>
 
         <div style={ui.toolbar}>
           <button style={ui.button("secondary")} onClick={() => navigate("/home")}>
-            Home
+            Início
           </button>
           <button style={ui.button("secondary")} onClick={() => navigate("/search")}>
             Buscar
@@ -181,7 +188,7 @@ export default function TicketsKanbanPage() {
         <div style={{ marginTop: 16 }}>
           <div style={ui.emptyState()}>
             <div style={ui.spinner()} />
-            <div>Carregando board...</div>
+            <div>Carregando Kanban...</div>
           </div>
         </div>
       ) : (
@@ -311,7 +318,7 @@ function Column({
       {/* DROP HINT */}
       {isOver && (
         <div style={{ marginTop: 10, ...ui.hint() }}>
-          Solte aqui para mover para <b>{statusKey}</b>.
+          Solte aqui para mover para <b>{title}</b>.
         </div>
       )}
     </div>

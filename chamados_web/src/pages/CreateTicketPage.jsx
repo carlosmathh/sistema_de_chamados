@@ -64,7 +64,7 @@ export default function CreateTicketPage() {
     const descTrim = description.trim();
 
     if (cid === OTHER_CATEGORY_ID && (!subjectTrim || !descTrim)) {
-      setErrorMsg("Para 'Não encontrei', informe assunto e descrição.");
+        setErrorMsg("Para a categoria 'Não encontrei', informe assunto e descrição.");
       return;
     }
 
@@ -80,7 +80,7 @@ export default function CreateTicketPage() {
       navigate("/home");
     } catch (err) {
       const detail = err?.response?.data?.detail;
-      setErrorMsg(detail || `Erro ao criar ticket. (${err?.response?.status || "?"})`);
+      setErrorMsg(detail || `Erro ao criar chamado. (${err?.response?.status || "?"})`);
     } finally {
       setSaving(false);
     }
@@ -91,7 +91,7 @@ export default function CreateTicketPage() {
       {/* HEADER */}
       <div style={ui.headerRow(t)}>
         <div>
-          <h1 style={ui.title(t)}>Criar ticket</h1>
+          <h1 style={ui.title(t)}>Criar chamado</h1>
           <p style={ui.subtitle(t)}>
             Selecione uma categoria e descreva o problema para abrir o chamado.
           </p>
@@ -191,7 +191,7 @@ export default function CreateTicketPage() {
             {/* Actions */}
             <div style={ui.actionRow()}>
               <div style={ui.hint()}>
-                Ao criar, você será redirecionado para a Home.
+                Ao criar, você será redirecionado para o Início.
               </div>
 
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -205,7 +205,7 @@ export default function CreateTicketPage() {
                 </button>
 
                 <button type="submit" style={ui.button("primary")} disabled={saving || !categoryId}>
-                  {saving ? "Criando..." : "Criar ticket"}
+                  {saving ? "Criando..." : "Criar chamado"}
                 </button>
               </div>
             </div>

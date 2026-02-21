@@ -4,11 +4,18 @@ import StatusBadge from "../components/StatusBadge";
 import { ui } from "../ui/ui";
 
 const STATUS_OPTIONS = [
-  { value: "open", label: "Open" },
-  { value: "in_progress", label: "In progress" },
-  { value: "resolved", label: "Resolved" },
-  { value: "canceled", label: "Canceled" },
+  { value: "open", label: "Aberto" },
+  { value: "in_progress", label: "Em andamento" },
+  { value: "resolved", label: "Resolvido" },
+  { value: "canceled", label: "Cancelado" },
 ];
+
+const EVENT_LABEL = {
+  created: "Criado",
+  assigned: "Atribuído",
+  reassigned: "Reatribuído",
+  status_changed: "Status alterado",
+};
 
 export default function TicketModal({
   isOpen,
@@ -89,7 +96,7 @@ export default function TicketModal({
 
             setSupports(Array.isArray(supRes.data) ? supRes.data : []);
           } catch (e) {
-            if (!cancelled) setSupportsError("Erro ao carregar supports disponíveis.");
+            if (!cancelled) setSupportsError("Erro ao carregar suportes disponíveis.");
           } finally {
             if (!cancelled) setSupportsLoading(false);
           }
@@ -219,7 +226,7 @@ export default function TicketModal({
           <div style={{ display: "grid", gap: 4 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
               <strong style={{ fontSize: t.font.size.lg, color: t.colors.text }}>
-                Ticket #{ticketId}
+                Chamado #{ticketId}
               </strong>
               {details?.status ? <StatusBadge status={details.status} /> : null}
             </div>
@@ -315,7 +322,7 @@ export default function TicketModal({
                         {history.map((row) => (
                           <tr key={row.id ?? `${row.created_at}-${row.event_type}`}>
                             <td style={ui.td()}>{formatDate(row.created_at)}</td>
-                            <td style={ui.td()}>{row.event_type ?? "-"}</td>
+                            <td style={ui.td()}>{EVENT_LABEL[row.event_type] ?? row.event_type ?? "-"}</td>
                             <td style={ui.td()}>
                               {row.old_value ? <StatusBadge status={row.old_value} /> : "-"}
                             </td>
@@ -396,12 +403,12 @@ export default function TicketModal({
                         </label>
 
                         {supportsLoading ? (
-                          <div style={ui.hint()}>Carregando supports...</div>
+                          <div style={ui.hint()}>Carregando suportes...</div>
                         ) : supportsError ? (
                           <div style={ui.errorText()}>{supportsError}</div>
                         ) : (
                           <div style={ui.hint()}>
-                            Só aparecem supports elegíveis (nível e limite em andamento).
+                            Só aparecem suportes elegíveis (nível e limite em andamento).
                           </div>
                         )}
                       </div>

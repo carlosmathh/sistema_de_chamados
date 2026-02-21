@@ -8,19 +8,19 @@ import { ui } from "../ui/ui";
 
 const STATUS_OPTIONS = [
   { value: "", label: "Todos" },
-  { value: "open", label: "Open" },
-  { value: "in_progress", label: "In progress" },
-  { value: "resolved", label: "Resolved" },
-  { value: "canceled", label: "Canceled" },
+  { value: "open", label: "Aberto" },
+  { value: "in_progress", label: "Em andamento" },
+  { value: "resolved", label: "Resolvido" },
+  { value: "canceled", label: "Cancelado" },
 ];
 
 const STATUS_ORDER = ["open", "in_progress", "resolved", "canceled"];
 
 const STATUS_LABEL = {
-  open: "Open",
-  in_progress: "In progress",
-  resolved: "Resolved",
-  canceled: "Canceled",
+  open: "Aberto",
+  in_progress: "Em andamento",
+  resolved: "Resolvido",
+  canceled: "Cancelado",
 };
 
 export default function HomePage() {
@@ -52,9 +52,9 @@ export default function HomePage() {
   }, [results]);
 
   const title = useMemo(() => {
-    if (!user) return "Meus tickets";
-    if (user.role === "client") return "Meus tickets";
-    return "Tickets atribuídos a mim";
+    if (!user) return "Meus chamados";
+    if (user.role === "client") return "Meus chamados";
+    return "Chamados atribuídos a mim";
   }, [user]);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function HomePage() {
     } catch (err) {
       const detail = err?.response?.data?.detail;
 
-      let msg = "Erro ao carregar tickets.";
+      let msg = "Erro ao carregar chamados.";
       if (typeof detail === "string") msg = detail;
       else if (Array.isArray(detail)) msg = detail.map((e) => e?.msg).filter(Boolean).join(" | ");
       else if (detail) msg = JSON.stringify(detail);
@@ -119,7 +119,7 @@ export default function HomePage() {
         <div>
           <h1 style={ui.title(t)}>{title}</h1>
           <p style={ui.subtitle(t)}>
-            Visualize seus tickets, filtre por status e abra detalhes para acompanhar histórico e ações.
+            Visualize seus chamados, filtre por status e abra detalhes para acompanhar histórico e ações.
           </p>
         </div>
 
@@ -132,18 +132,18 @@ export default function HomePage() {
 
           {isClient ? (
             <button style={ui.button("primary")} onClick={() => navigate("/tickets/new")}>
-              Novo ticket
+              Novo chamado
             </button>
           ) : null}
 
           {isClient || isSeniorEngineer ? (
             <button style={ui.button("secondary")} onClick={() => navigate("/search")}>
-              Buscar
+              Pesquisar
             </button>
           ) : null}
 
           <button style={ui.button("danger")} onClick={handleLogout}>
-            Logout
+            Sair
           </button>
         </div>
       </div>
@@ -210,20 +210,20 @@ export default function HomePage() {
       {/* TABELA */}
       <div style={ui.card(t)}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
-          <h3 style={ui.sectionTitle(t)}>Tickets</h3>
+          <h3 style={ui.sectionTitle(t)}>Chamados</h3>
           <div style={{ fontSize: t.font.size.xs, color: t.colors.subtle }}>
-            Clique em uma linha para abrir o ticket.
+            Clique em uma linha para abrir o chamado.
           </div>
         </div>
 
         {loading && results.length === 0 ? (
           <div style={ui.emptyState()}>
             <div style={ui.spinner()} />
-            <div>Carregando tickets...</div>
+            <div>Carregando Chamados...</div>
           </div>
         ) : results.length === 0 ? (
           <div style={ui.emptyState()}>
-            <div>Nenhum ticket encontrado para este filtro.</div>
+            <div>Nenhum chamado encontrado para este filtro.</div>
           </div>
         ) : (
           <div style={ui.tableWrap()}>
@@ -231,15 +231,15 @@ export default function HomePage() {
               <thead>
                 <tr>
                   {[
-                    "ticket_id",
-                    "status",
-                    "create_date",
-                    "resolution_date",
-                    "client_name",
-                    "category_name",
-                    "required_level",
-                    "support_name",
-                    "subject_user",
+                    "ID",
+                    "Status",
+                    "Criado em",
+                    "Resolvido em",
+                    "Cliente",
+                    "Categoria",
+                    "Nível",
+                    "Suporte",
+                    "Assunto",
                   ].map((h) => (
                     <th key={h} style={ui.th()}>{h}</th>
                   ))}

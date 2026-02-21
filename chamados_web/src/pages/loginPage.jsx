@@ -70,7 +70,7 @@ export default function LoginPage() {
             Entrar no sistema
           </h1>
           <p style={{ margin: "8px 0 0", color: t.colors.muted, fontSize: t.font.size.sm }}>
-            Acesse para criar, acompanhar e gerenciar tickets.
+            Acesse para criar, acompanhar e gerenciar chamados.
           </p>
         </div>
 
@@ -79,15 +79,15 @@ export default function LoginPage() {
           <form onSubmit={handleLogin} style={{ display: "grid", gap: 12 }}>
             <div style={{ display: "grid", gap: 10 }}>
               <label style={ui.label(t)}>
-                Role
+                Perfil
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
                   style={ui.select(t)}
                   disabled={loading}
                 >
-                  <option value="client">client</option>
-                  <option value="support">support</option>
+                  <option value="client">Cliente</option>
+                  <option value="support">Suporte</option>
                 </select>
               </label>
 
@@ -114,7 +114,7 @@ export default function LoginPage() {
             {errorMsg ? <div style={ui.alert("error")}>{errorMsg}</div> : null}
 
             <div style={{ marginTop: 2, fontSize: t.font.size.xs, color: t.colors.subtle }}>
-              Dica: use seu ID de <b>client</b> ou <b>support</b> conforme configurado no backend.
+              Dica: use seu ID de <b>cliente</b> ou <b>suporte</b> conforme configurado no backend.
             </div>
           </form>
         </div>

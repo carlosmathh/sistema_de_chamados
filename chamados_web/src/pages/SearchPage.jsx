@@ -4,13 +4,14 @@ import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import TicketModal from "../components/TicketModal";
 import { ui } from "../ui/ui";
+import StatusBadge from "../components/StatusBadge";
 
 const STATUS_OPTIONS = [
   { value: "", label: "Todos" },
-  { value: "open", label: "Open" },
-  { value: "in_progress", label: "In progress" },
-  { value: "resolved", label: "Resolved" },
-  { value: "canceled", label: "Canceled" },
+  { value: "open", label: "Aberto" },
+  { value: "in_progress", label: "Em andamento" },
+  { value: "resolved", label: "Resolvido" },
+  { value: "canceled", label: "Cancelado" },
 ];
 
 export default function SearchPage() {
@@ -53,9 +54,9 @@ export default function SearchPage() {
 
       if (mode === "id") {
         const cleaned = ticketId.trim();
-        if (!cleaned) throw new Error("Informe o ticket_id.");
+        if (!cleaned) throw new Error("Informe o ID do chamado.");
         const n = Number(cleaned);
-        if (!Number.isInteger(n) || n <= 0) throw new Error("ticket_id inválido.");
+        if (!Number.isInteger(n) || n <= 0) throw new Error("ID do chamado inválido.");
         params.set("ticket_id", String(n));
       } else {
         const cleaned = q.trim();
@@ -108,15 +109,15 @@ export default function SearchPage() {
       {/* HEADER */}
       <div style={ui.headerRow(t)}>
         <div>
-          <h1 style={ui.title(t)}>Buscar tickets</h1>
+          <h1 style={ui.title(t)}>Buscar Chamados</h1>
           <p style={ui.subtitle(t)}>
-            Encontre tickets por texto ou por ID e abra o modal para detalhes e ações.
+            Encontre chamados por texto ou por ID e abra o modal para detalhes e ações.
           </p>
         </div>
 
         <div style={ui.toolbar}>
           <button type="button" style={ui.button("secondary")} onClick={() => navigate("/home")}>
-            Home
+            Início
           </button>
           <button
             type="button"
@@ -126,7 +127,7 @@ export default function SearchPage() {
             Kanban
           </button>
           <button type="button" style={ui.button("danger")} onClick={handleLogout}>
-            Logout
+            Sair
           </button>
         </div>
       </div>
@@ -134,7 +135,7 @@ export default function SearchPage() {
       {/* PERMISSÃO */}
       {!canSearch ? (
         <div style={ui.alert("error")}>
-          Sem permissão para buscar (somente client ou support senior/engineer).
+            Sem permissão para buscar (apenas clientes ou suportes senior/engineer).
         </div>
       ) : (
         <>
@@ -159,7 +160,7 @@ export default function SearchPage() {
 
                 {mode === "id" ? (
                   <label style={ui.label(t)}>
-                    ticket_id
+                    ID do chamado
                     <input
                       style={ui.input(t)}
                       value={ticketId}
@@ -204,7 +205,7 @@ export default function SearchPage() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
               <h3 style={ui.sectionTitle(t)}>Resultados</h3>
               <span style={{ color: t.colors.muted, fontSize: t.font.size.sm }}>
-                {results.length} item(s)
+                {results.length} resultado(s)
               </span>
             </div>
 
@@ -223,14 +224,14 @@ export default function SearchPage() {
                   <thead>
                     <tr>
                       {[
-                        "ticket_id",
-                        "status",
-                        "create_date",
-                        "client_name",
-                        "category_name",
-                        "required_level",
-                        "support_name",
-                        "subject_user",
+                        "ID",
+                        "Status",
+                        "Criado em",
+                        "Cliente",
+                        "Categoria",
+                        "Nível",
+                        "Suporte",
+                        "Assunto",
                       ].map((h) => (
                         <th key={h} style={ui.th()}>{h}</th>
                       ))}
@@ -245,7 +246,7 @@ export default function SearchPage() {
                         style={rowStyle}
                       >
                         <td style={ui.td()}>{r.ticket_id}</td>
-                        <td style={ui.td()}>{r.status}</td>
+                        <td style={ui.td()}><StatusBadge status={r.status} /></td>
                         <td style={ui.td()}>{r.create_date}</td>
                         <td style={ui.td()}>{r.client_name}</td>
                         <td style={ui.td()}>{r.category_name}</td>
@@ -258,7 +259,7 @@ export default function SearchPage() {
                 </table>
 
                 <div style={{ padding: "10px 12px", fontSize: t.font.size.xs, color: t.colors.subtle }}>
-                  Clique em uma linha para abrir o ticket no modal.
+                  Clique em uma linha para abrir o chamado no modal.
                 </div>
               </div>
             )}

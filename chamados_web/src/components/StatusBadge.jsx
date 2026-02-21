@@ -1,9 +1,10 @@
-const STATUS_LABEL = {
-  open: "Open",
-  in_progress: "In progress",
-  resolved: "Resolved",
-  canceled: "Canceled",
+export const STATUS_LABEL = {
+  open: "Aberto",
+  in_progress: "Em andamento",
+  resolved: "Resolvido",
+  canceled: "Cancelado",
 };
+
 
 export default function StatusBadge({ status }) {
   const s = status || "-";
@@ -31,7 +32,7 @@ export default function StatusBadge({ status }) {
         lineHeight: 1,
         ...st,
       }}
-      title={s}
+      title={STATUS_LABEL[s] ?? s}
     >
       {STATUS_LABEL[s] ?? s}
     </span>
