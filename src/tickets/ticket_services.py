@@ -125,8 +125,7 @@ class TicketServices:
         assigner = AssingSupport(self.conn, utils)
 
         support_id = assigner.assign_support(problem_category_id)
-        if not support_id:
-            return None
+        status = "in_progress" if support_id else "open"
 
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         status = "open"
