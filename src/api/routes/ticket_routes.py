@@ -232,12 +232,12 @@ def update_status(
                 status_code=403, detail="You can only update your assigned tickets"
             )
 
-        updated = services.update_ticket_status_and_return(
-            ticket_id=ticket_id,
-            new_status=body.status,
-            actor_type=user.role,
-            actor_id=user.user_id,
-        )
+    updated = services.update_ticket_status_and_return(
+        ticket_id=ticket_id,
+        new_status=body.status,
+        actor_type=user.role,
+        actor_id=user.user_id,
+    )
 
     if not updated:
         raise HTTPException(status_code=500, detail="Could not fetch updated ticket")
