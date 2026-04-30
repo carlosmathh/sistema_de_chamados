@@ -12,7 +12,7 @@ class Queries:
 
     # SELECTS
     CATEGORIES_PROBLEMS_SQL = f"""
-    SELECT name, required_level FROM problems_categories
+    SELECT name, required_level FROM problem_categories
         """
     # Insere um novo chamado de suporte no banco de dados, registrando o cliente,
     # a categoria do problema, o status inicial e os detalhes da solicitação.

@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `defaultdb`.`ticket` (
   `id_problem_categories` INT NOT NULL,
   `status` ENUM('open', 'in_progress', 'resolved', 'canceled') NOT NULL COMMENT '“Neste MVP usamos ENUM, mas em um sistema de grande escala isso poderia evoluir para tabelas de domínio.”\n',
   `create_date` DATETIME NOT NULL,
-  `suject` VARCHAR(50) NULL,
+  `subject` VARCHAR(50) NULL,
   `descript` TEXT NULL,
   `resolution_date` DATETIME NULL,
   PRIMARY KEY (`id`),
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `defaultdb`.`ticket_history` (
   `new_value` VARCHAR(255) NULL,
   `actor_type` ENUM('system', 'support', 'client') NOT NULL,
   `actor_id` INT NULL,
-  `created_at` DATETIME NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_ticket_history_ticket`
