@@ -17,4 +17,5 @@ def get_connection() -> Connection:
         connect_timeout=10,
         cursorclass=pymysql.cursors.DictCursor,
         autocommit=False,
+        ssl={"ssl": {}},
     )
