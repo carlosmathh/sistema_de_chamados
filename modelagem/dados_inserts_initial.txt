@@ -1,0 +1,149 @@
+-----------------sector---------------------
+INSERT INTO `defaultdb`.`sector` (`name`) VALUES 
+('RH'),
+('Financeiro'),
+('TI'),
+('Comercial'),
+('Logística'),
+('Marketing'),
+('Jurídico');
+
+-----------------position_company---------------------
+INSERT INTO `defaultdb`.`position_company` (`name`) VALUES 
+('Analista'),
+('Gerente'),
+('Diretor'),
+('Estagiário'),
+('Coordenador'),
+('Assistente Administrativo'),
+('Supervisor');
+
+
+-----------------client---------------------
+INSERT INTO `defaultdb`.`client` (`id`, `id_sector`, `name`, `email`, `id_position_company`) VALUES 
+(1, 1, 'Marcos Silva', 'marcos.silva@teste.com', 1),
+(2, 1, 'Julia Pereira', 'julia.pereira@teste.com', 2),
+(3, 2, 'Ricardo Alves', 'ricardo.alves@teste.com', 1),
+(4, 3, 'Fernanda Costa', 'fernanda.costa@teste.com', 1),
+(5, 4, 'Gabriel Souza', 'gabriel.souza@teste.com', 5),
+(6, 5, 'Amanda Rocha', 'amanda.rocha@teste.com', 1),
+(7, 3, 'Lucas Mendes', 'lucas.mendes@teste.com', 1),
+(8, 2, 'Beatriz Oliveira', 'beatriz.oliveira@teste.com', 1),
+(9, 4, 'Andre Ferreira', 'andre.ferreira@teste.com', 1),
+(10, 1, 'Carla Santos', 'carla.santos@teste.com', 1),
+(11, 2, 'Thiago Lima', 'thiago.lima@teste.com', 1),
+(12, 3, 'Vanessa Ribeiro', 'vanessa.ribeiro@teste.com', 1),
+(13, 1, 'Felipe Castro', 'felipe.castro@teste.com', 1),
+(14, 6, 'Patrícia Gomes', 'patricia.gomes@teste.com', 1),
+(15, 5, 'Rodrigo Martins', 'rodrigo.martins@teste.com', 1),
+(17, 7, 'Bruno Cardoso', 'bruno.cardoso@teste.com', 1),
+(18, 1, 'Daniela Carvalho', 'daniela.carvalho@teste.com', 1),
+(19, 2, 'Eduardo Melo', 'eduardo.melo@teste.com', 1),
+(20, 4, 'Fabiana Teixeira', 'fabiana.teixeira@teste.com', 1),
+(32, 3, 'Simone Moraes', 'simone.moraes@teste.com', 1),
+(35, 5, 'Vitor Cavalcanti', 'vitor.cavalcanti@teste.com', 1),
+(38, 6, 'Yara Farias', 'yara.farias@teste.com', 1),
+(39, 7, 'Zeca Moura', 'zeca.moura@teste.com', 1),
+(42, 1, 'Denise Lins', 'denise.lins@teste.com', 1),
+(48, 2, 'Joana Hipólito', 'joana.hipolito@teste.com', 1),
+(50, 3, 'Lúcia Valente', 'lucia.valente@teste.com', 1);
+
+-----------------support_team---------------------
+INSERT INTO `defaultdb`.`support_team` (`id`, `name`, `position_team`, `active_inactive`) VALUES 
+(1, 'Lucas Oliveira', 'junior', 1),
+(2, 'Mariana Souza', 'junior', 1),
+(3, 'Pedro Henrique', 'junior', 1),
+(4, 'Ana Clara Lima', 'junior', 1),
+(5, 'João Victor Silva', 'junior', 1),
+(6, 'Beatriz Mendes', 'junior', 0),
+(7, 'Rafael Costa', 'junior', 1),
+(8, 'Carla Ferreira', 'mid_level', 1),
+(9, 'Diego Santos', 'mid_level', 1),
+(10, 'Fernanda Rocha', 'mid_level', 1),
+(11, 'Gabriel Alves', 'mid_level', 1),
+(12, 'Ricardo Gomes', 'senior', 1),
+(13, 'Patrícia Ribeiro', 'senior', 1),
+(14, 'Thiago Martins', 'senior', 0),
+(15, 'Helena Castro', 'engineer', 1);
+
+-----------------problem_categories---------------------
+INSERT INTO `defaultdb`.`problem_categories` 
+(`name`, `descript`, `base_complexity`, `required_level`) 
+VALUES 
+('Reset de Senha', 'Recuperação de acesso a contas internas e e-mail.', 'low', 'junior'),
+('Problemas de Impressora', 'Dificuldade de conexão ou erro de hardware em periféricos.', 'low', 'junior'),
+('Instalação de Software', 'Instalação de ferramentas de trabalho padrão (Office, Browser).', 'average', 'junior'),
+('Lentidão no Computador', 'Análise de performance e limpeza de arquivos temporários.', 'average', 'mid_level'),
+('Acesso à Rede/VPN', 'Problemas de conectividade remota ou local.', 'high', 'mid_level'),
+('Erro em Banco de Dados', 'Falha em conexões ou execução de queries em ambiente de teste.', 'high', 'senior'),
+('Queda de Servidor', 'Interrupção total de serviços críticos da empresa.', 'critical', 'senior'),
+('Arquitetura de Sistemas', 'Ajustes estruturais ou bugs complexos de código.', 'critical', 'engineer'),
+('Configuração de E-mail', 'Configuração de assinatura, pastas e regras de Outlook.', 'low', 'junior'),
+('Solicitação de Periféricos', 'Troca de mouse, teclado ou entrega de novos cabos.', 'low', 'junior'),
+('Dúvida em Planilhas', 'Suporte funcional básico em Excel ou Google Sheets.', 'low', 'junior'),
+('Atualização de Antivírus', 'Verificação manual de ameaças e atualização de vacinas.', 'low', 'junior'),
+('Acesso a Pastas de Rede', 'Liberação de permissões em pastas compartilhadas.', 'average', 'junior'),
+('Falha no Wi-Fi Local', 'Instabilidade de conexão em setores específicos.', 'average', 'mid_level'),
+('Troca de Hardware (RAM/SSD)', 'Upgrade ou substituição de peças em notebooks/desktops.', 'average', 'mid_level'),
+('Configuração de Firewall', 'Liberação de portas específicas para aplicações internas.', 'high', 'senior'),
+('Backup de Emergência', 'Recuperação de arquivos deletados acidentalmente pelo usuário.', 'high', 'senior'),
+('Bug em Sistema Interno', 'Comportamento inesperado no ERP ou sistema de chamados.', 'high', 'engineer');
+
+
+-----------------ticket---------------------
+INSERT INTO `defaultdb`.`ticket` 
+(`id_client`, `id_support`, `id_problem_categories`, `status`, `create_date`, `suject`, `descript`, `resolution_date`) 
+VALUES 
+-- JUNIOR 1 (3 tickets: 2 em andamento, 1 resolvido)
+(1, 1, 1, 'in_progress', DATE_SUB(NOW(), INTERVAL 5 DAY), 'Senha Bloqueada', 'Usuário errou 3 vezes', NULL),
+(2, 1, 2, 'in_progress', DATE_SUB(NOW(), INTERVAL 2 DAY), 'Impressora', 'Papel atolado na bandeja 2', NULL),
+(3, 1, 9, 'resolved', DATE_SUB(NOW(), INTERVAL 45 DAY), 'Outlook', 'Sincronização de e-mails', DATE_SUB(NOW(), INTERVAL 44 DAY)),
+
+-- JUNIOR 2 (2 tickets: 1 em andamento, 1 cancelado)
+(4, 2, 3, 'in_progress', DATE_SUB(NOW(), INTERVAL 10 DAY), 'Software', 'Instalação do pacote Adobe', NULL),
+(5, 2, 1, 'canceled', DATE_SUB(NOW(), INTERVAL 30 DAY), 'Login ERP', 'Usuário lembrou a senha', DATE_SUB(NOW(), INTERVAL 29 DAY)),
+
+-- JUNIOR 3 (2 tickets: 1 aberto, 1 resolvido)
+(6, 3, 10, 'open', DATE_SUB(NOW(), INTERVAL 1 DAY), 'Hardware', 'Mouse com mau contato', NULL),
+(7, 3, 11, 'resolved', DATE_SUB(NOW(), INTERVAL 50 DAY), 'Dúvida Excel', 'Fórmula de Procv retornando erro', DATE_SUB(NOW(), INTERVAL 50 DAY) + INTERVAL 2 HOUR),
+
+-- MID-LEVEL 8 (3 tickets: 1 em andamento, 2 resolvidos)
+(14, 8, 5, 'in_progress', DATE_SUB(NOW(), INTERVAL 3 DAY), 'VPN Fail', 'Não conecta em rede doméstica', NULL),
+(15, 8, 6, 'resolved', DATE_SUB(NOW(), INTERVAL 15 DAY), 'Wi-Fi Instável', 'Sinal fraco no Financeiro', DATE_SUB(NOW(), INTERVAL 14 DAY)),
+(17, 8, 7, 'resolved', DATE_SUB(NOW(), INTERVAL 40 DAY), 'Upgrade RAM', 'Notebook lento para rodar CAD', DATE_SUB(NOW(), INTERVAL 39 DAY)),
+
+-- MID-LEVEL 9 (2 tickets: 1 aberto, 1 em andamento)
+(18, 9, 13, 'open', DATE_SUB(NOW(), INTERVAL 4 HOUR), 'Acesso Pasta', 'Liberar pasta de Projetos', NULL),
+(19, 9, 5, 'in_progress', DATE_SUB(NOW(), INTERVAL 6 DAY), 'Erro VPN 404', 'Certificado digital expirado', NULL),
+
+-- SENIOR 12 (1 ticket: resolvido)
+(20, 12, 15, 'resolved', DATE_SUB(NOW(), INTERVAL 55 DAY), 'Crash DB', 'Deadlock em tabela de produção', DATE_SUB(NOW(), INTERVAL 55 DAY) + INTERVAL 5 HOUR);
+
+
+
+-----------------ticket_history---------------------
+-- Histórico para o Ticket 1 (Junior 1 - In Progress)
+INSERT INTO `defaultdb`.`ticket_history` (`id_ticket`, `event_type`, `old_value`, `new_value`, `actor_type`, `actor_id`, `created_at`, `note`) VALUES 
+(1, 'created', NULL, 'open', 'client', 1, DATE_SUB(NOW(), INTERVAL 5 DAY), 'Chamado aberto via portal'),
+(1, 'assigned', 'open', 'in_progress', 'support', 1, DATE_SUB(NOW(), INTERVAL 5 DAY) + INTERVAL 10 MINUTE, 'Técnico assumiu o chamado');
+
+-- Histórico para o Ticket 3 (Junior 1 - Resolved)
+INSERT INTO `defaultdb`.`ticket_history` (`id_ticket`, `event_type`, `old_value`, `new_value`, `actor_type`, `actor_id`, `created_at`, `note`) VALUES 
+(3, 'created', NULL, 'open', 'client', 3, DATE_SUB(NOW(), INTERVAL 45 DAY), 'Chamado via e-mail'),
+(3, 'assigned', 'open', 'in_progress', 'support', 1, DATE_SUB(NOW(), INTERVAL 45 DAY) + INTERVAL 1 HOUR, 'Assumido para análise'),
+(3, 'status_changed', 'in_progress', 'resolved', 'support', 1, DATE_SUB(NOW(), INTERVAL 44 DAY), 'Outlook reconfigurado com sucesso');
+
+-- Histórico para o Ticket 5 (Junior 2 - Canceled)
+INSERT INTO `defaultdb`.`ticket_history` (`id_ticket`, `event_type`, `old_value`, `new_value`, `actor_type`, `actor_id`, `created_at`, `note`) VALUES 
+(5, 'created', NULL, 'open', 'client', 5, DATE_SUB(NOW(), INTERVAL 30 DAY), 'Solicitação de reset'),
+(5, 'status_changed', 'open', 'canceled', 'client', 5, DATE_SUB(NOW(), INTERVAL 29 DAY), 'Cancelei pois lembrei a senha');
+
+-- Histórico para o Ticket 6 (Junior 3 - Open)
+INSERT INTO `defaultdb`.`ticket_history` (`id_ticket`, `event_type`, `old_value`, `new_value`, `actor_type`, `actor_id`, `created_at`, `note`) VALUES 
+(6, 'created', NULL, 'open', 'client', 6, DATE_SUB(NOW(), INTERVAL 1 DAY), 'Mouse parou de funcionar');
+
+-- Histórico para o Ticket 20 (Senior 12 - Resolved)
+INSERT INTO `defaultdb`.`ticket_history` (`id_ticket`, `event_type`, `old_value`, `new_value`, `actor_type`, `actor_id`, `created_at`, `note`) VALUES 
+(13, 'created', NULL, 'open', 'system', NULL, DATE_SUB(NOW(), INTERVAL 55 DAY), 'Alerta de monitoramento de DB'),
+(13, 'assigned', 'open', 'in_progress', 'support', 12, DATE_SUB(NOW(), INTERVAL 55 DAY) + INTERVAL 5 MINUTE, 'Investigando deadlock'),
+(13, 'status_changed', 'in_progress', 'resolved', 'support', 12, DATE_SUB(NOW(), INTERVAL 55 DAY) + INTERVAL 5 HOUR, 'Tabelas otimizadas e deadlock resolvido');
