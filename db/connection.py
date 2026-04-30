@@ -14,7 +14,7 @@ def get_connection() -> Connection:
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),  # type: ignore
         database=os.getenv("DB_NAME"),
-        connect_timeout=10,
+        connect_timeout=30,
         cursorclass=pymysql.cursors.DictCursor,
         autocommit=False,
         ssl={"ssl": {}},
